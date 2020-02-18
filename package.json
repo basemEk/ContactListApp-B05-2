@@ -6,15 +6,22 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
+    "express": "^4.17.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.4.0"
   },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "nodemon --exec babel-node ./src/index.js",
+    "build:clean": "rimraf ./build",
+    "build:build": "babel src --out-dir ./build --source-maps",
+    "build": "npm run build:clean && npm run build:build",
+    "production": "node ./build/index.js"
   },
   "eslintConfig": {
     "extends": "react-app"
